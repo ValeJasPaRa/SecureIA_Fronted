@@ -1,0 +1,47 @@
+
+<div><h1>Listar Roles</h1></div>
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="c1">
+    <th mat-header-cell *matHeaderCellDef> Número ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_rol}} </td>
+  </ng-container>
+
+  <!-- Column nombre area-->
+  <ng-container matColumnDef="c2">
+    <th mat-header-cell *matHeaderCellDef> Tipo de ROL</th>
+    <td mat-cell *matCellDef="let element"> {{element.tipo_rol}} </td>
+  </ng-container>
+
+  
+   <!--Columna de actualizar -->
+  <ng-container matColumnDef="c3">
+    <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton [routerLink]="['ediciones',element.id_rol]">
+        Actualizar <mat-icon>edit</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+
+     <!--Columna de eliminar -->
+
+    <ng-container matColumnDef="c4">
+    <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton (click)="eliminar(element.id_rol)">
+        Eliminar<mat-icon>delete</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+</div>

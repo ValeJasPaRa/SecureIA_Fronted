@@ -1,0 +1,9 @@
+
+<router-outlet></router-outlet>
+
+<!-- se debe de agregar para que se muestre el listar-->
+ <!-- de aqui ir a su .ts para agrgar el listarareacomponent-->
+<div [hidden]="route.children.length !==0">
+   <app-listarrol></app-listarrol>
+</div>
+
