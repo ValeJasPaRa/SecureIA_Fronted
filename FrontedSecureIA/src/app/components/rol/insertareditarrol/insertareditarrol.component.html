@@ -1,17 +1,15 @@
 
-<div>
-    <div><h1>REGISTRAR NUEVO ROL</h1></div>
+<div  class="container">
+    <div  style="text-align: center;margin:5%" *ngIf="!edicion"><h1>Registro de Roles</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Rol</h1></div>
+    <div style="text-align: center;margin:5%" class="form-box">
     <form [formGroup]="form"  (submit)="aceptar()">    
-       <!-- SE AÑADE EL ACEPTAR() para el insertar -->
-        <!-- agregar este form con este formato corregido y en el .ts el ReactiveFormsModule -->
+       
     <br>
         <mat-form-field  *ngIf="edicion"> 
           <mat-label>Código_ID</mat-label>
-           <input matInput  formControlName="Codigo">   <!-- Aqui tmb se corrige agregando el formcontroller como name -->
-           <mat-error *ngIf="form.get('Codigo')?.hasError('required')">   <!-- Es necesario hacerlo con cuidado importar lo necesario en el .ts -->
-             No es obligatorio este campo. Opcional*
-           </mat-error>
-        </mat-form-field>
+           <input matInput  formControlName="Codigo" [readonly]="true">   
+        </mat-form-field>   <!-- es por defecto sin validacion -->
 
     <br>
         <mat-form-field>
@@ -26,4 +24,5 @@
         <button matButton="filled">Registrar</button>
 
     </form>
+    </div>
 </div>
