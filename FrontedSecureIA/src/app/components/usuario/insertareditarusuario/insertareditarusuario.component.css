@@ -1,14 +1,15 @@
 /* Contenedor principal */
 .container {
   background:  rgb(110, 174, 247); /* blanco a azul claro */
-  padding: 40px 20px;
+  padding: 10px 10px;
   border-radius: 20px;
-  max-width: 600px;
+  max-width:600px;
   margin: 40px auto;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 /* Título */
@@ -16,8 +17,8 @@
   color: #ffffff; 
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
-  font-size: 60px;
-  margin-bottom: 5px;
+  font-size: 65px;
+  margin-bottom: 0px;
   text-shadow:
     0px 0px 1px black,
     0.5px 0.5px 1px black;
@@ -26,21 +27,21 @@
 /* Caja que encapsula el formulario */
 .form-box {
   background-color: #ffffff;
-  padding: 30px 40px;
+  padding: 10px 30px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 460px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2px;
 }
 
 /* Formulario */
 form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2px;
 }
 
 /* mat-form-field ocupa todo el ancho */
