@@ -1,0 +1,81 @@
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Actividad</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Actividad</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Actividad</mat-label>
+                <input matInput formControlName="CodiActividad" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Tipo de Actividad</mat-label>
+                <input matInput formControlName="tipoActi">
+                <mat-error *ngIf="form.get('tipoActi')?.hasError('required')">
+                El tipo de Actividad es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label class="campo-textarea"> Descripción</mat-label>
+                <textarea matInput formControlName="DescripActi" rows="4" placeholder="Escribir los detalles aquí..."></textarea>
+                <mat-error *ngIf="form.get('DescripActi')?.hasError('required')">
+                Ingrese el detalle de la actividad!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <!--mat-form-field>
+                <mat-label>Fecha y Hora</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="FechayHora">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('FechayHora')?.hasError('required')">
+                Ingrese la fecha de la actividad!!
+                </mat-error>
+            </!--mat-form-field-->
+
+            <br>
+            <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="FechayHora">
+            <mat-datepicker #datepicker/>
+            <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+            </mat-form-field>
+
+            <mat-form-field>
+            <mat-label> Time</mat-label>
+            <input matInput
+                [matTimepicker]="timepicker"
+                formControlName="FechayHora"
+               >
+            <mat-timepicker #timepicker/>
+            <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+            <mat-label>USUARIO Asignado</mat-label>
+            <mat-select formControlName="idUserACTIV">
+                @for (food of listadeUsuarios; track food) {
+                <mat-option [value]="food.id_usuario">{{food.dni_usuario}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idUserACTIV')?.hasError('required')">
+                Asignar el USUARIO porfavor!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <button matButton="filled">Registrar</button>
+
+        </form>
+    </div>
+
+</div>

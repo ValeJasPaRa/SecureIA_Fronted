@@ -1,0 +1,97 @@
+<div class="container">
+<div style="display: flex; justify-content: flex-end;">
+  <button mat-raised-button color="primary" routerLink="/geolocalizaciones/nuevo">
+    Nueva Geolocalización
+  </button>
+</div>
+<div><h1>Listar Geolocalizaciones</h1></div>
+
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="c1">
+    <th mat-header-cell *matHeaderCellDef> Número de ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_geo}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="c2">
+    <th mat-header-cell *matHeaderCellDef> Latitud </th>
+    <td mat-cell *matCellDef="let element"> {{element.latitud}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c3">
+    <th mat-header-cell *matHeaderCellDef> Longitud </th>
+    <td mat-cell *matCellDef="let element"> {{element.longitud}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="c4">
+    <th mat-header-cell *matHeaderCellDef> Dirección </th>
+    <td mat-cell *matCellDef="let element"> {{element.direccion_geo}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="c5">
+    <th mat-header-cell *matHeaderCellDef> Referencia </th>
+    <td mat-cell *matCellDef="let element"> {{element.referencia_geo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c6">
+    <th mat-header-cell *matHeaderCellDef> Inmueble Asociado </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_inmueble.id_inmueble}} </td>
+  </ng-container>
+
+  <!-- Ver Mapa -->
+  <ng-container matColumnDef="cMapa">
+    <th mat-header-cell *matHeaderCellDef> Ver Mapa </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="verEnMapa(element.latitud, element.longitud, element.id_geo)">
+        <mat-icon>map</mat-icon>
+      </button>
+
+      <!-- Muestra el mapa solo si este ID coincide -->
+      <mat-card *ngIf="idMapaVisible === element.id_geo" style="margin-top: 10px">
+        <iframe
+          width="100%" height="250"
+          [src]="urlMapa"
+          frameborder="0"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </mat-card>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c7">
+    <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton [routerLink]="['ediciones',element.id_geo]">
+        Actualizar <mat-icon>edit</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+  
+    <ng-container matColumnDef="c8">
+    <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton (click)="eliminar(element.id_geo)">
+        Eliminar<mat-icon>delete</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+
+
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+ <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of anuncios">
+ </mat-paginator>
+
+</div>
+</div>

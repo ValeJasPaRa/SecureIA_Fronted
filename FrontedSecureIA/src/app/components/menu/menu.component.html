@@ -1,0 +1,80 @@
+
+<mat-toolbar class="custom-toolbar"> 
+  <a href="https://i.pinimg.com/736x/22/c9/64/22c964ee71030c74b1a33ce2c156a35d.jpg" target="_blank">
+  <img src="https://i.pinimg.com/736x/22/c9/64/22c964ee71030c74b1a33ce2c156a35d.jpg" alt="Logo" style="height: 60px; margin-right: 10px;">
+  </a>
+ <div><h1>SecureIA</h1></div> 
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menu_Roles" class="btn-rojo">
+   <mat-icon>stars</mat-icon>
+   Roles
+  </button>
+ </div>
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menu_Usuarios" class="btn-rojo">
+   <mat-icon>supervised_user_circle</mat-icon>
+   Usuarios
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Inmuebles" class="btn-rojo">
+   <mat-icon>store</mat-icon>
+   Inmuebles
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Actividades" class="btn-rojo">
+   <mat-icon>settings</mat-icon>
+   Actividades
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_PerfilUsuario" class="btn-rojo">
+   <mat-icon>group</mat-icon>
+   Perfiles de Usuario
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Geolocalizacion" class="btn-rojo">
+   <mat-icon>explore</mat-icon>
+   Geolocalizaciones
+  </button>
+ </div>
+
+</mat-toolbar>
+
+<mat-menu #menu_Roles="matMenu">
+ <button mat-menu-item routerLink="/roles">Listar</button>
+ <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Usuarios="matMenu">
+ <button mat-menu-item routerLink="/usuarios">Listar</button> 
+ <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Inmuebles="matMenu">
+ <button mat-menu-item routerLink="/inmuebles">Listar</button> 
+ <button mat-menu-item routerLink="/inmuebles/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Actividades="matMenu">
+ <button mat-menu-item routerLink="/actividades">Listar</button> 
+ <button mat-menu-item routerLink="/actividades/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_PerfilUsuario="matMenu">
+ <button mat-menu-item routerLink="/perfilusuario">Listar</button> 
+ <button mat-menu-item routerLink="/perfilusuario/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Geolocalizacion="matMenu">
+ <button mat-menu-item routerLink="/geolocalizaciones">Listar</button> 
+ <button mat-menu-item routerLink="/geolocalizaciones/nuevo">Registrar</button>
+</mat-menu>
