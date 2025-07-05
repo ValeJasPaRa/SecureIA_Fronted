@@ -1,0 +1,134 @@
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Usuario</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Usuario</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Usuario</mat-label>
+                <input matInput formControlName="Codigouser" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Nombre de Usuario</mat-label>
+                <input matInput formControlName="nombref">
+                <mat-error *ngIf="form.get('nombref')?.hasError('required')">
+                El nombre del usuario obligatorio!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> DNI </mat-label>
+                <input matInput formControlName="dnif">
+                <mat-error *ngIf="form.get('dnif')?.hasError('required')">
+                El DNI del usuario obligatorio!!
+                </mat-error>
+            </mat-form-field>
+
+            
+            <br>
+            <mat-form-field>
+                <mat-label> Correo </mat-label>
+                <input matInput formControlName="correof">
+                <mat-error *ngIf="form.get('correof')?.hasError('required')">
+                El Correo del usuario obligatorio!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <div>
+                <mat-label>Género:  </mat-label>
+                <mat-radio-group aria-label="Seleccione una opción"
+                formControlName="sexof"
+                [(ngModel)]="valorDefecto">
+                    <mat-radio-button [value]="'F'"> 
+                        <mat-icon>female</mat-icon>Femenino</mat-radio-button>
+                    <mat-radio-button [value]="'M'">
+                        <mat-icon>male</mat-icon> Masculino</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="telefonof">
+                <mat-error *ngIf="form.get('telefonof')?.hasError('required')">
+                El teléfono es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Dirección</mat-label>
+                <input matInput formControlName="direccionf">
+                <mat-error *ngIf="form.get('direccionf')?.hasError('required')">
+                La direccion es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field >
+                <mat-label>Imagen</mat-label>
+                <input matInput formControlName="imgf">
+                <mat-error *ngIf="form.get('imgf')?.hasError('required')">
+                Insertar una url de imagen porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <!--
+            <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="passwordf">
+            <mat-error *ngIf="form.get('passwordf')?.hasError('required')">
+                Falta completar campo contraseña !!
+            </mat-error>
+            </mat-form-field>
+            -->
+            <br>
+            <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordf">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar o mostrar contraseña'" [attr.aria-pressed]="!hide" type="button">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.get('passwordf')?.hasError('required')">
+                Falta completar campo contraseña!
+            </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fecha_regf">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('fecha_regf')?.hasError('required')">
+                La fecha es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+            <mat-label>ROL Asignado</mat-label>
+            <mat-select formControlName="idrolf">
+                @for (food of listaRoles; track food) {
+                <mat-option [value]="food.id_rol">{{food.tipo_rol}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idrolf')?.hasError('required')">
+                El ROL es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <button matButton="filled">Registrar</button>
+
+        </form>
+    </div>
+
+</div>
+
+
