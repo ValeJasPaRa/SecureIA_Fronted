@@ -1,0 +1,70 @@
+    
+    <!--boton de retorno-->
+    <div style="display: flex; justify-content: flex-end;">
+    <button mat-raised-button color="primary" routerLink="/zonasdetec">
+    <mat-icon>arrow_back</mat-icon> Regresar</button>
+    </div> 
+
+    <div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Zona Detección</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Zona Detección</h1></div>
+ 
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Zona Detección</mat-label>
+                <input matInput formControlName="CodZon" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Nombre </mat-label>
+                <input matInput formControlName="Nombrezon">
+                <mat-error *ngIf="form.get('Nombrezon')?.hasError('required')">
+                El nombre de la zona es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> Coordenada</mat-label>
+                <input matInput formControlName="Coord">
+                <mat-error *ngIf="form.get('Coord')?.hasError('required')">
+                Ingrese la coordenada!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-label>Monitoreo</mat-label>
+            <br>
+            <mat-radio-group formControlName="Monit">
+            <mat-radio-button [value]="true">
+                <mat-icon>gps_fixed</mat-icon> Activar
+            </mat-radio-button>
+            <mat-radio-button [value]="false">
+                <mat-icon>gps_off</mat-icon> Desactivar
+            </mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+            <mat-form-field>
+            <mat-label>INMUEBLE Asignado</mat-label>
+            <mat-select formControlName="idInmuebleZONA">
+                @for (food of listadeInmuebles; track food) {
+                <mat-option [value]="food.id_inmueble">{{food.nombre_inmueble}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idInmuebleZONA')?.hasError('required')">
+                Asignar el INMUEBLE porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <button matButton="filled">Registrar</button>
+
+        </form>
+    </div>
+
+</div>
