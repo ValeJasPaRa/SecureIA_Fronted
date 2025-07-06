@@ -1,0 +1,94 @@
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Evento Dispositivo</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Evento Dispositivo</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Evento</mat-label>
+                <input matInput formControlName="CodiEvent" [readonly]="true">
+            </mat-form-field>
+
+           <br>
+            <mat-form-field>
+            <mat-label> Tipo de Evento</mat-label>
+            <mat-select formControlName="tipo">
+                @for (food of listadeEventos; track food) {
+                <mat-option [value]="food.tipo_evento">{{food.tipo_evento}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('tipo')?.hasError('required')">
+                Asignar el tipo de evento porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label class="campo-textarea"> Descripción</mat-label>
+                <textarea matInput formControlName="Descrip" rows="3" placeholder="Escribir los detalles aquí..."></textarea>
+                <mat-error *ngIf="form.get('Descrip')?.hasError('required')">
+                Ingrese el detalle del evento!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="FechayHora">
+            <mat-datepicker #datepicker/>
+            <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+            </mat-form-field>
+
+            <mat-form-field>
+            <mat-label> Time</mat-label>
+            <input matInput
+                [matTimepicker]="timepicker"
+                formControlName="FechayHora"
+               >
+            <mat-timepicker #timepicker/>
+            <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+            </mat-form-field>
+            
+            <br>                
+            <mat-label>Seleccione el Nivel de Alerta:  </mat-label>
+            <br>
+            <mat-radio-group formControlName="NivelAler">
+            <mat-radio-button value="Baja">
+                <mat-icon>arrow_downward</mat-icon>
+                Baja
+            </mat-radio-button>
+            <mat-radio-button value="Media">
+                <mat-icon>adjust</mat-icon>
+                Media
+            </mat-radio-button>
+            <mat-radio-button value="Alta">
+                <mat-icon>arrow_upward</mat-icon>
+                Alta
+            </mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+            <mat-form-field>
+            <mat-label>DISPOSITIVO Asignado</mat-label>
+            <mat-select formControlName="idDispoEVENT">
+                @for (food of listadeDispositivos; track food) {
+                <mat-option [value]="food.id_dispositivo">{{food.id_dispositivo}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idDispoEVENT')?.hasError('required')">
+                Asignar el DISPOSITIVO porfavor!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+                
+            <button matButton="filled">Registrar</button>
+            <!--para el snackbar esta linea-->
+            <!--button matButton="outlined" (click)="openSnackBar('Registrado con exito','aceptar')">Registrar</button><--->
+
+        </form>
+    </div>
+
+</div>
