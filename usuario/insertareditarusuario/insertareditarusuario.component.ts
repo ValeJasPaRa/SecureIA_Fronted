@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Usuario } from '../../../models/usuario';
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/rol.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import {MatRadioModule} from '@angular/material/radio';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,7 +22,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   imports: [MatInputModule,
     MatFormFieldModule,
     CommonModule,MatRadioModule,
-    ReactiveFormsModule,FormsModule,MatSelectModule,MatDatepickerModule,MatButtonModule,MatIconModule],
+    ReactiveFormsModule,FormsModule,MatSelectModule,MatDatepickerModule,MatButtonModule,MatIconModule,
+    RouterLink],
   templateUrl: './insertareditarusuario.component.html',
   styleUrl: './insertareditarusuario.component.css'
 })
@@ -66,15 +67,18 @@ export class InsertareditarusuarioComponent implements OnInit {
 
       this.form=this.formBuilder.group({
         Codigouser:[''], //solo de muestra
-        nombref:['',Validators.required],
-        dnif:['',Validators.required],
-        correof:['',Validators.required],
+        nombref:['',[Validators.required,Validators.maxLength(20),
+                     Validators.pattern('^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$')]], //solo letras y espacios
+        dnif:['',[Validators.required,  Validators.pattern('^[0-9]{1,8}$')]], // máximo 8 dígitos]
+        correof:['',[Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\\.com$')]], // solo @gmail.com o @hotmail.com],
         sexof:['',Validators.required],
-        telefonof:['',Validators.required],
-        direccionf:['',Validators.required],
-        imgf:['',Validators.required],
-        passwordf:['',Validators.required],
-        fecha_regf:['',Validators.required],
+        telefonof:['',[Validators.required, Validators.pattern('^[0-9]{9}$')]], // 9 dígitos exactos],
+        direccionf:['',[Validators.required, Validators.maxLength(50)]],
+        imgf:['',[Validators.required, Validators.maxLength(50)]],
+        passwordf:['',[Validators.required,  Validators.maxLength(8),
+                       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{1,8}$')]],
+                      // al menos una mayúscula, minúscula, número y símbolo, máx 8
+        fecha_regf:['',Validators.required], // formato: mm/dd/YYYY
         idrolf:['',Validators.required]
       })
 
