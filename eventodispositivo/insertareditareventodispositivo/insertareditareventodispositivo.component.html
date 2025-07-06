@@ -1,3 +1,9 @@
+    <!--boton de retorno-->
+    <div  style="position: absolute; top: 180px; right: 700px;flex-wrap: wrap;">
+    <button mat-raised-button color="primary" routerLink="/eventos">
+    <mat-icon>arrow_back</mat-icon> Regresar</button>
+    </div> 
+
 <div class="container">
     <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Evento Dispositivo</h1></div>
     <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Evento Dispositivo</h1></div>
@@ -31,6 +37,9 @@
                 <mat-error *ngIf="form.get('Descrip')?.hasError('required')">
                 Ingrese el detalle del evento!!
                 </mat-error>
+                  <mat-error *ngIf="form.get('Descrip')?.hasError('maxlength')">
+                    Máximo 250 caracteres permitidos.
+                  </mat-error>
             </mat-form-field>
 
             <br>
@@ -49,6 +58,10 @@
                >
             <mat-timepicker #timepicker/>
             <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+
+            <mat-error *ngIf="form.get('FechayHora')?.hasError('matDatepickerParse')">
+            Formato inválido. Usa el selector de fecha y hora
+            </mat-error>
             </mat-form-field>
             
             <br>                
@@ -84,8 +97,8 @@
             
             <br>
                 
-            <button matButton="filled">Registrar</button>
-            <!--para el snackbar esta linea-->
+            <button matButton="filled" [disabled]="form.invalid" >Registrar</button>
+            <!--para el snackbar esta linea//sin control pero-->
             <!--button matButton="outlined" (click)="openSnackBar('Registrado con exito','aceptar')">Registrar</button><--->
 
         </form>

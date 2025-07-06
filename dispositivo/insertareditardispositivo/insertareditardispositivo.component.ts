@@ -12,7 +12,7 @@ import { Dispositivo } from '../../../models/dispositivo';
 import { Inmueble } from '../../../models/inmueble';
 import { DispositivoService } from '../../../services/dispositivo.service';
 import { InmuebleService } from '../../../services/inmueble.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -22,7 +22,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     CommonModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatButtonModule,MatRadioModule,MatIconModule],
+    MatButtonModule,MatRadioModule,MatIconModule,
+    RouterLink],
   templateUrl: './insertareditardispositivo.component.html',
   styleUrl: './insertareditardispositivo.component.css'
 })
@@ -63,7 +64,7 @@ export class InsertareditardispositivoComponent implements OnInit {
       this.form=this.formBuilder.group({
         CodDispo:[''], //solo de muestra
         Tipodis:['',Validators.required],
-        Ubica:['',Validators.required],
+        Ubica:['', [Validators.required, Validators.maxLength(20)]],
         Estado:['',Validators.required],
         idInmuebleDISPO:['',Validators.required]
       })

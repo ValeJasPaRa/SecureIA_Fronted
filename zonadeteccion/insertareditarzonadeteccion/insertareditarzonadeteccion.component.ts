@@ -62,8 +62,8 @@ export class InsertareditarzonadeteccionComponent implements OnInit{
 
       this.form=this.formBuilder.group({
         CodZon:[''], //solo de muestra
-        Nombrezon:['',Validators.required],
-        Coord:['',Validators.required],
+        Nombrezon:['',[Validators.required, Validators.maxLength(20),Validators.pattern('^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$')]],
+        Coord:['',    [ Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?\\s*,\\s*-?\\d+(\\.\\d+)?$')]],
         Monit:['',Validators.required],
         idInmuebleZONA:['',Validators.required]
       })

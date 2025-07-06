@@ -12,7 +12,7 @@ import { EventoDispositivo } from '../../../models/eventodispositivo';
 import { EventManager } from '@angular/platform-browser';
 import { Dispositivo } from '../../../models/dispositivo';
 import { DispositivoService } from '../../../services/dispositivo.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { EventodispositivoService } from '../../../services/eventodispositivo.service';
 import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,7 +27,8 @@ import {MatSnackBar} from '@angular/material/snack-bar'; //snackbar button
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,MatDatepickerModule,MatTimepickerModule,
-    MatRadioButton,MatIconModule,MatRadioModule],
+    MatRadioButton,MatIconModule,MatRadioModule,
+    RouterLink],
 
   templateUrl: './insertareditareventodispositivo.component.html',
   styleUrl: './insertareditareventodispositivo.component.css'
@@ -69,7 +70,7 @@ export class InsertareditareventodispositivoComponent implements OnInit {
       this.form=this.formBuilder.group({
         CodiEvent:[''], //solo de muestra
         tipo:['',Validators.required],
-        Descrip:['',Validators.required],
+        Descrip:['',[Validators.required, Validators.maxLength(250)]],
         FechayHora:['',Validators.required],
         NivelAler:['',Validators.required],
         idDispoEVENT:['',Validators.required]
