@@ -9,10 +9,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { PerfilUsuario } from '../../../models/perfilusuario';
 import { Usuario } from '../../../models/usuario';
 import { PerfilusuarioService } from '../../../services/perfilusuario.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MatRadioButton } from '@angular/material/radio';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio'; //Seleccion por boton
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
@@ -22,7 +22,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     CommonModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatButtonModule,MatRadioButton,MatIconModule,MatRadioModule],
+    MatButtonModule,MatRadioButton,MatIconModule,MatRadioModule,
+    RouterLink,MatIconModule],
   templateUrl: './insertareditarperfilusuario.component.html',
   styleUrl: './insertareditarperfilusuario.component.css'
 })
@@ -84,7 +85,7 @@ export class InsertareditarperfilusuarioComponent implements OnInit {
 
       this.form=this.formBuilder.group({
         CodPerfil:[''], //solo de muestra
-        UsernamePerfil:['',Validators.required],
+        UsernamePerfil:['', [Validators.required, Validators.maxLength(20)]],
         PrefPriva:['',Validators.required],
         PrefNotif:['',Validators.required],
         ZonaHor:['',Validators.required],

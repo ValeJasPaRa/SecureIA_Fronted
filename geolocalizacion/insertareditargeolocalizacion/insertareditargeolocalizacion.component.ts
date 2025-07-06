@@ -9,9 +9,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { GeolocalizacionService } from '../../../services/geolocalizacion.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { InmuebleService } from '../../../services/inmueble.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     CommonModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatButtonModule],
+    MatButtonModule,MatIconModule,RouterLink],
   templateUrl: './insertareditargeolocalizacion.component.html',
   styleUrl: './insertareditargeolocalizacion.component.css'
 })
@@ -60,10 +61,10 @@ export class InsertareditargeolocalizacionComponent implements OnInit {
 
       this.form=this.formBuilder.group({
         CodGeo:[''], //solo de muestra
-        Lat:['',Validators.required],
-        Lon:['',Validators.required],
-        Direcc:['',Validators.required],
-        Refer:['',Validators.required],
+        Lat:['',[Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?$')]], // número con o sin decimal
+        Lon:['',[Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?$')]],
+        Direcc:['',[Validators.required, Validators.maxLength(30)]],
+        Refer:['',[Validators.required, Validators.maxLength(50)]],
         idInmuebleGEO:['',Validators.required]
       })
 
