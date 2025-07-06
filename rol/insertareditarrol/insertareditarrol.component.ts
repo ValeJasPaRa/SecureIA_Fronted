@@ -6,17 +6,19 @@ import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms'; //para que acepte el formGroup
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/rol.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-insertareditarrol',
   providers: [provideNativeDateAdapter()], //se agrega en el insertar 
-  imports: [MatFormFieldModule,MatInputModule,CommonModule,MatSelectModule,ReactiveFormsModule,MatButtonModule],
+  imports: [MatFormFieldModule,MatInputModule,CommonModule,MatSelectModule,ReactiveFormsModule,
+    RouterLink, MatButtonModule,MatIconModule],
   templateUrl: './insertareditarrol.component.html',
   styleUrl: './insertareditarrol.component.css'
 })
@@ -54,9 +56,9 @@ export class InsertareditarrolComponent implements OnInit {
 
       this.form=this.formBuilder.group({
         Codigo:[''],
-        Tipo_de_Rol:['',Validators.required]
-      })
-      
+        Tipo_de_Rol:['',[Validators.required, Validators.maxLength(15), // maximo 15 
+        Validators.pattern(/^[A-Za-z ]+$/) ]]// letras y espacios
+      })      
     }
 
    aceptar(){
